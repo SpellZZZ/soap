@@ -1,0 +1,66 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://demo.soap/web-service-test"
+           targetNamespace="http://demo.soap/web-service-test"
+           elementFormDefault="qualified">
+
+    <xs:element name="CreateExpenseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="amount" type="xs:double"/>
+                <xs:element name="description" type="xs:string"/>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="currency" type="tns:currency"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateExpenseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="amount" type="xs:double"/>
+                <xs:element name="description" type="xs:string"/>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="currency" type="tns:currency"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:element name="getExpenseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getExpenseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="expense" type="tns:expense"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="expense">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="currency" type="tns:currency"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:simpleType name="currency">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GBP"/>
+            <xs:enumeration value="EUR"/>
+            <xs:enumeration value="PLN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
