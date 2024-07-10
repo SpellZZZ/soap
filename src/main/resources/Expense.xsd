@@ -49,7 +49,7 @@
             <xs:element name="id" type="xs:long"/>
             <xs:element name="amount" type="xs:double"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="date" type="xs:date"/>
+            <xs:element name="date" type="xs:string"/>
             <xs:element name="currency" type="tns:currency"/>
         </xs:sequence>
     </xs:complexType>

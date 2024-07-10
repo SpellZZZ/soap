@@ -1,6 +1,7 @@
 package com.example.expensemanagersoap.endpoint;
 
 import com.example.expensemanagersoap.repo.ExpenseRepo;
+import com.example.expensemanagersoap.util.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,6 +11,8 @@ import soap.demo.web_service_test.Expense;
 import soap.demo.web_service_test.GetExpenseRequest;
 import soap.demo.web_service_test.GetExpenseResponse;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Endpoint
@@ -30,7 +33,11 @@ public class ExpenseEndpoint {
         Optional<Expense> optionalExpense = expenseRepo.findById(String.valueOf(request.getId()));
 
         if (optionalExpense.isPresent()) {
+            //XMLGregorianCalendar xmlGregorianCalendar = StringDateToXMLGregorianCalendarConverter.usingDatatypeFactoryForDate(dateAsString);
+
+
             response.setExpense(optionalExpense.get());
+
         } else {
             response.setExpense(new Expense());
         }
