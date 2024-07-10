@@ -1,4 +1,4 @@
-package com.example.expensemanagersoap;
+package com.example.expensemanagersoap.config;
 
 import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Value;
