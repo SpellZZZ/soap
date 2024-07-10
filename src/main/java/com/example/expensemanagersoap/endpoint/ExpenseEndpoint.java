@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Endpoint
 public class ExpenseEndpoint {
-    private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
+    private static final String NAMESPACE_URI = "http://demo.soap/web-service-test";
 
     final private ExpenseRepo expenseRepo;
 

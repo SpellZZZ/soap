@@ -23,13 +23,15 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    @Bean(name = "expense")
+    @Bean(name = "expenses")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema expenseSchema) {
+
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ExpensePort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://demo.soap/web-service-test");
         wsdl11Definition.setSchema(expenseSchema);
+
         return wsdl11Definition;
     }
 
