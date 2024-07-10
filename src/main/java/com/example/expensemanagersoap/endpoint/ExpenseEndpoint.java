@@ -27,12 +27,12 @@ public class ExpenseEndpoint {
     @ResponsePayload
     public GetExpenseResponse getExpense(@RequestPayload GetExpenseRequest request) {
         GetExpenseResponse response = new GetExpenseResponse();
-        Optional<Expense> optionalExpense = expenseRepo.findById(request.getId());
+        Optional<Expense> optionalExpense = expenseRepo.findById(String.valueOf(request.getId()));
 
         if (optionalExpense.isPresent()) {
             response.setExpense(optionalExpense.get());
         } else {
-            response = null;
+            response.setExpense(new Expense());
         }
 
         return response;

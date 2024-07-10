@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import soap.demo.web_service_test.Expense;
 
 @Repository
-public interface ExpenseRepo extends MongoRepository<Expense,Long> {
+public interface ExpenseRepo extends MongoRepository<Expense,String> {
 
 
 
