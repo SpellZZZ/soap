@@ -1,7 +1,6 @@
 package com.example.expensemanagersoap.endpoint;
 
 import com.example.expensemanagersoap.repo.ExpenseRepo;
-import com.example.expensemanagersoap.util.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -9,8 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import soap.demo.web_service_test.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
+import javax.xml.datatype.DatatypeConfigurationException;
+import java.util.List;
 import java.util.Optional;
 
 @Endpoint
@@ -59,6 +58,26 @@ public class ExpenseEndpoint {
         response.setDate(request.getDate()); // requeat there
         response.setCurrency(savedExpense.getCurrency());
 
+        return response;
+    }
+
+
+
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllExpensesRequest")
+    @ResponsePayload
+    public GetAllExpensesResponse getAllExpenses(@RequestPayload GetAllExpensesRequest request) throws DatatypeConfigurationException {
+        GetAllExpensesResponse response = new GetAllExpensesResponse();
+        List<Expense> expenses = expenseRepo.findAll();
+        for (Expense expense : expenses) {
+            Expense expenseXml = new Expense();
+            expenseXml.setId(expense.getId());
+            expenseXml.setAmount(expense.getAmount());
+            expenseXml.setDescription(expense.getDescription());
+            expenseXml.setDate(expense.getDate());
+            expenseXml.setCurrency(expense.getCurrency());
+            response.getExpenses().add(expenseXml);
+        }
         return response;
     }
 

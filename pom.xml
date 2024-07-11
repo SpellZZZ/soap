@@ -98,7 +98,7 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>${project.basedir}/src/main/resources/expense.xsd</source>
+                        <source>${project.basedir}/src/main/resources/Expense.xsd</source>
                     </sources>
                 </configuration>
             </plugin>

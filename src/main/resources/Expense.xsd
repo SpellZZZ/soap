@@ -44,6 +44,28 @@
         </xs:complexType>
     </xs:element>
 
+
+
+    <xs:element name="getAllExpensesRequest" >
+    <xs:complexType>
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:element>
+
+
+
+    <xs:element name="getAllExpensesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="expenses" type="tns:expense" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
     <xs:complexType name="expense">
         <xs:sequence>
             <xs:element name="id" type="xs:string"/>
@@ -60,6 +82,7 @@
             <xs:enumeration value="GBP"/>
             <xs:enumeration value="EUR"/>
             <xs:enumeration value="PLN"/>
+            <xs:enumeration value="USD"/>
         </xs:restriction>
     </xs:simpleType>
 
