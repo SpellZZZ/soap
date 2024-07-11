@@ -56,7 +56,7 @@ public class ExpenseEndpoint {
         response.setId(savedExpense.getId());
         response.setAmount(savedExpense.getAmount());
         response.setDescription(savedExpense.getDescription());
-        //response.setDate(savedExpense.getDate());
+        response.setDate(request.getDate()); // requeat there
         response.setCurrency(savedExpense.getCurrency());
 
         return response;

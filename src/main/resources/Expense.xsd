@@ -17,7 +17,7 @@
     <xs:element name="CreateExpenseResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
+                <xs:element name="id" type="xs:string"/>
                 <xs:element name="amount" type="xs:double"/>
                 <xs:element name="description" type="xs:string"/>
                 <xs:element name="date" type="xs:date"/>
@@ -31,7 +31,7 @@
     <xs:element name="getExpenseRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
+                <xs:element name="id" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -46,7 +46,7 @@
 
     <xs:complexType name="expense">
         <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
+            <xs:element name="id" type="xs:string"/>
             <xs:element name="amount" type="xs:double"/>
             <xs:element name="description" type="xs:string"/>
             <xs:element name="date" type="xs:string"/>
