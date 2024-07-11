@@ -7,9 +7,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import soap.demo.web_service_test.Expense;
-import soap.demo.web_service_test.GetExpenseRequest;
-import soap.demo.web_service_test.GetExpenseResponse;
+import soap.demo.web_service_test.*;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
@@ -33,15 +31,35 @@ public class ExpenseEndpoint {
         Optional<Expense> optionalExpense = expenseRepo.findById(String.valueOf(request.getId()));
 
         if (optionalExpense.isPresent()) {
-            //XMLGregorianCalendar xmlGregorianCalendar = StringDateToXMLGregorianCalendarConverter.usingDatatypeFactoryForDate(dateAsString);
-
-
             response.setExpense(optionalExpense.get());
-
         } else {
             response.setExpense(new Expense());
         }
 
         return response;
     }
+
+
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateExpenseRequest")
+    @ResponsePayload
+    public CreateExpenseResponse createExpense(@RequestPayload CreateExpenseRequest request) {
+        Expense expense = new Expense();
+        expense.setAmount(request.getAmount());
+        expense.setDescription(request.getDescription());
+        expense.setDate(request.getDate().toString());
+        expense.setCurrency(request.getCurrency());
+
+        Expense savedExpense = expenseRepo.save(expense);
+
+        CreateExpenseResponse response = new CreateExpenseResponse();
+        response.setId(savedExpense.getId());
+        response.setAmount(savedExpense.getAmount());
+        response.setDescription(savedExpense.getDescription());
+        //response.setDate(savedExpense.getDate());
+        response.setCurrency(savedExpense.getCurrency());
+
+        return response;
+    }
+
 }
